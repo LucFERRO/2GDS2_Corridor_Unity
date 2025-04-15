@@ -2,7 +2,6 @@
 
 public class PlayerAiming : MonoBehaviour
 {
-
     [Header("References")]
     public Transform bodyTransform;
 

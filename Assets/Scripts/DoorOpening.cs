@@ -5,7 +5,7 @@ public class DoorOpening : MonoBehaviour
     [SerializeField]
     Transform playerTransform;
     [SerializeField]
-    float doorRange = 1.5f;
+    float doorRange = 2f;
     [SerializeField]
     float doorSpeed;
     [SerializeField]
