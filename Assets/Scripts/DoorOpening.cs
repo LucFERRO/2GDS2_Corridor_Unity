@@ -9,6 +9,8 @@ public class DoorOpening : MonoBehaviour
     [SerializeField]
     float doorSpeed;
     [SerializeField]
+    float snapAngle;
+    [SerializeField]
     bool isOpening;
 
     void Update()
@@ -22,7 +24,7 @@ public class DoorOpening : MonoBehaviour
         float targetAngle = isOpening ? 90f : 0f;
         float newY = Mathf.LerpAngle(currentY, targetAngle, Time.deltaTime * doorSpeed);
 
-        if (Mathf.Abs(Mathf.DeltaAngle(currentY, targetAngle)) < 0.1f)
+        if (Mathf.Abs(Mathf.DeltaAngle(currentY, targetAngle)) < snapAngle)
         {
             newY = targetAngle;
         }
