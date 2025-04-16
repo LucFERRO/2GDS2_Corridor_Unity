@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     //public float jumpSpeed = 8.0f;
     public float gravity = 20.0f;
     private Vector3 moveDirection = Vector3.zero;
+    public bool ballarina;
+    public int rotateSpeed = 5;
 
     void Start()
     {
@@ -15,11 +17,16 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        BallarinaHandle();
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ballarina = !ballarina;
+        }
+
         if (controller.isGrounded)
         {
             moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             moveDirection = transform.TransformDirection(moveDirection);
-            moveDirection *= speed;
 
             //if (Input.GetButton("Jump"))
             //    moveDirection.y = jumpSpeed;
@@ -27,5 +34,14 @@ public class PlayerController : MonoBehaviour
 
         moveDirection.y -= gravity * Time.deltaTime;
         controller.Move(moveDirection * Time.deltaTime);
+    }
+
+    private void BallarinaHandle()
+    {
+        if (!ballarina)
+        {
+            return;
+        }
+        transform.eulerAngles += new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + rotateSpeed, transform.eulerAngles.z);
     }
 }
