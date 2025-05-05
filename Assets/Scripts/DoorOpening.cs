@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class DoorOpening : MonoBehaviour
@@ -12,6 +13,8 @@ public class DoorOpening : MonoBehaviour
     float snapAngle;
     [SerializeField]
     bool isOpening;
+    [SerializeField]
+    TMP_Text uiText;
 
     void Update()
     {
@@ -35,9 +38,23 @@ public class DoorOpening : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if (Input.GetButtonDown("Interact") && Vector3.Distance(transform.position, playerTransform.position) <= doorRange)
+        if (Vector3.Distance(transform.position, playerTransform.position) <= doorRange)
         {
-            isOpening = !isOpening;
+            uiText.enabled = true;
+            if (Input.GetButtonDown("Interact") && Vector3.Distance(transform.position, playerTransform.position) <= doorRange)
+            {
+                isOpening = !isOpening;
+            }
+        } else
+        {
+
+            uiText.enabled = false;
         }
+    }
+
+    private void OnMouseExit()
+    {
+
+        uiText.enabled = false;
     }
 }
