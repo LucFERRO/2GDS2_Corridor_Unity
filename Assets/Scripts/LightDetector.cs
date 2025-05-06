@@ -32,7 +32,6 @@ public class LightDetector : MonoBehaviour
 
         if (currentTimer <= 0)
         {
-            Debug.Log("OFF");
             MovementDetected = false;
             currentTimer = maxTimer;
 
@@ -56,7 +55,6 @@ public class LightDetector : MonoBehaviour
 
         if (other.GetComponent<Rigidbody>().linearVelocity.magnitude >= detectionThreshold)
         {
-            Debug.Log("DETECTED");
             currentTimer = maxTimer;
             MovementDetected = true;
         }
